@@ -24,7 +24,7 @@ def send_email(now_file):
     sender = 'WenTao.Chen@bl.com'
     #定义接收者的邮箱
     #receiver = ['JiaJun.Tang@bl.com','Li.Huang@bl.com','Lian.Liu@bl.com']
-    receiver = ['Li.Huang@bl.com']
+    receiver = ['Long.Yang@bl.com']
     #定义发送主题
     subject = "自动化测试报告"
     #定义发送文件
@@ -67,13 +67,15 @@ if __name__ == "__main__":
     ISOTIMEFORMAT='%Y-%m-%d %H_%M_%S' #设置时间格式
     #返回系统当前时间并转换成str类型
     now_time = time.strftime(ISOTIMEFORMAT,time.localtime())
+    print now_time
     fp = open(report_dir +'\\'+now_time+'report.html' , 'wb')
-    
+    print "Running"
     #runner = unittest.TextTestRunner()
     runner = HTMLTestRunner.HTMLTestRunner(stream = fp,
                                            title = '百联登录测试报告',
                                            description = '用例执行情况')
     #runner.run(suit)
+    print "Running1"
     runner.run(discover)
     fp.close()
     
