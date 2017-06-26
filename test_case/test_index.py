@@ -17,8 +17,8 @@ class Test(unittest.TestCase):
         #driver= webdriver.Chrome(chromedriver,chrome_options=options)
         #加载手机模式
         mobile_emulation = { "deviceMetrics": {"width": 375, "height": 667, "pixelRatio": 3.0}, #  定义设备高宽，像素比 
-                    "userAgent": "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) " # 通过ua来模拟 
-                    "AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"} 
+                    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) " # 通过ua来模拟 
+                    "AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"} 
         chrome_options = Options() 
         chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
         self.driver = webdriver.Chrome(chromedriver,chrome_options = chrome_options)
@@ -38,6 +38,6 @@ class Test(unittest.TestCase):
         driver = self.driver
         driver.quit()
 
-# if __name__ == '__main__':
-#     unittest.main()        
+if __name__ == '__main__':
+    unittest.main()        
         
