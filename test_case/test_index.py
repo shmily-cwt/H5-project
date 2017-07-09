@@ -2,42 +2,35 @@
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from page import login_page,home_page
-from public import setting
+from public import setting,common
 import unittest
 import os
 
 
 class Test(unittest.TestCase):
     def setUp(self):
-        chromedriver = "D:\\Program Files (x86)\\Python\\chromedriver\\chromedriver.exe"
-        os.environ["webdriver.chrome.driver"] = chromedriver
-        #去掉ignore-certificate-errors
-        options = webdriver.ChromeOptions()  #进入浏览器设置
-        options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])
-        #driver= webdriver.Chrome(chromedriver,chrome_options=options)
-        #加载手机模式
-        mobile_emulation = { "deviceMetrics": {"width": 375, "height": 667, "pixelRatio": 3.0}, #  定义设备高宽，像素比 
-                    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) " # 通过ua来模拟 
-                    "AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"} 
-        chrome_options = Options() 
-        chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
-        self.driver = webdriver.Chrome(chromedriver,chrome_options = chrome_options)
-        self.driver.maximize_window()
-        #self.base_url = "http://m.bl.com/h5-web/member/view_login.html"
+        self.driver = common.commom.open_H5(self)
         
     def test_login(self):
         '''测试登录'''
-        driver = self.driver
-        driver.get(setting.data.home_url)
+        self.driver = common.commom.open_H5(self)
+        self.driver.get(setting.data.home_url)
         home_page.First_page.click_my(self)
         login_page.index_page.input_username(self,setting.data.username)
         login_page.index_page.input_password(self,setting.data.password)
         login_page.index_page.click_submit(self)
+        common.commom.time_out(self)
+        login_title = "//div[@class='head-info-title']"
+        login_name = common.commom.check_Text(self,login_title)
+        if login_name == "shmily":
+            print "success"
+        
+        
         
     def tearDown(self):
         driver = self.driver
         driver.quit()
 
-if __name__ == '__main__':
-    unittest.main()        
+# if __name__ == '__main__':
+#     unittest.main()        
         

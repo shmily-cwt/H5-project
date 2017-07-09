@@ -3,6 +3,7 @@ from selenium import webdriver
 from public import common
 class First_page:
     
+    xpath_first_page = "//div[contains(text(),'首页')]"       #点击首页
     xpath_bailian_shopping = "//div[contains(text(),'逛百联')]" #逛百联按钮
     xpath_first_medicine = "//div[contains(text(),'第一医药')]"  #第一医药按钮
     xpath_gift_card = "//div[contains(text(),'礼品卡')]"       #礼品卡按钮
@@ -10,7 +11,7 @@ class First_page:
     xpath_chinese = "//div[contains(text(),'特色中国')]"        #特色中国
     xpath_recharge = "//div[contains(text(),'充值缴费')]"       #充值缴费
     xpath_parking = "//div[contains(text(),'停车')]"          #停车按钮
-    xpath_free_collar = "//div[contains(text(),'免费领')]"     #免费领按钮
+    xpath_free_collar = "//div[contains(text(),'超值团')]"     #免费领按钮
     xpath_coupons = "//div[contains(text(),'领券中心')]"        #领券中心
     xpath_basket = "//div[contains(text(),'精选篮筐')]"         #篮筐按钮
     xpath_classification = "//div[contains(text(),'分类')]"    #分类按钮
@@ -38,6 +39,12 @@ class First_page:
     xpath_fashion = "//section[3]/div/div/a[3]"                #潮玩
     
     @staticmethod
+    def click_first_page(self):
+        driver = self.driver
+        common.commom.time_out(self)
+        driver.find_element_by_xpath(First_page.xpath_first_page).click()
+    
+    @staticmethod
     def click_bailian_shopping(self):
         '''点击逛百联'''
         driver = self.driver
@@ -56,7 +63,7 @@ class First_page:
         '''点击礼品卡'''
         driver = self.driver
         common.commom.time_out(self)
-        driver.find_element_by_xpath(First_page.xpath_furniture_life).click()
+        driver.find_element_by_xpath(First_page.xpath_gift_card).click()
     
     @staticmethod    
     def click_digital(self):
@@ -87,11 +94,11 @@ class First_page:
         driver.find_element_by_xpath(First_page.xpath_parking).click()  
     
     @staticmethod
-    def click_free_collar(self):
-        '''点击免费领按钮'''
+    def click_Premium_group(self):
+        '''点击超值团按钮'''
         driver = self.driver
         common.commom.time_out(self)
-        driver.find_element_by_xpath(First_page.free_collar).click() 
+        driver.find_element_by_xpath(First_page.xpath_free_collar).click() 
      
     @staticmethod
     def click_my(self):
